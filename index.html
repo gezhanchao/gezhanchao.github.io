@@ -4,55 +4,72 @@
 <title>富江云端入口</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:linear-gradient(160deg,#0f172a,#1e293b 60%,#0f172a);color:#e2e8f0;min-height:100vh;padding:24px 16px;line-height:1.6}
-.wrap{max-width:520px;margin:0 auto}
-h1{font-size:22px;font-weight:700;background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
-.sub{color:#94a3b8;font-size:13px;margin-bottom:22px}
-.card{background:rgba(30,41,59,.75);border:1px solid #334155;border-radius:14px;padding:18px;margin-bottom:14px}
-.card h2{font-size:15px;color:#7dd3fc;margin-bottom:12px;font-weight:600}
-a.btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;text-decoration:none;padding:13px 16px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:10px}
-a.btn:hover{filter:brightness(1.1)}
-a.btn.gray{background:#334155;color:#cbd5e1}
-a.btn small{font-weight:400;opacity:.85;font-size:12px}
-.tip{font-size:12px;color:#94a3b8;margin-top:8px;line-height:1.7}
-.tip b{color:#7dd3fc}
-.warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);color:#fcd34d;font-size:12px;padding:10px 12px;border-radius:9px;margin-top:10px}
+body{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:linear-gradient(160deg,#0f172a,#1e293b 60%,#0f172a);color:#e2e8f0;min-height:100vh;padding:22px 14px 40px;line-height:1.6}
+.wrap{max-width:560px;margin:0 auto}
+h1{font-size:21px;font-weight:700;background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#94a3b8;font-size:12px;margin:4px 0 20px}
+.card{background:rgba(30,41,59,.78);border:1px solid #334155;border-radius:14px;padding:16px;margin-bottom:14px}
+.card h2{font-size:14px;color:#7dd3fc;margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:7px}
+.item{border:1px solid #334155;border-radius:10px;padding:11px 12px;margin-bottom:9px;background:rgba(15,23,42,.5)}
+.item .row1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.item .nm{font-size:13px;font-weight:600;color:#e2e8f0;word-break:break-all}
+.item .sz{font-size:11px;color:#94a3b8;white-space:nowrap}
+.item .meta{font-size:11px;color:#64748b;margin-top:4px;line-height:1.5}
+.item .note{font-size:12px;color:#a5b4fc;margin-top:4px}
+.item a.dl{display:inline-block;margin-top:8px;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;text-decoration:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600}
+.item a.dl:hover{filter:brightness(1.1)}
+a.btn{display:flex;align-items:center;gap:9px;background:#334155;color:#cbd5e1;text-decoration:none;padding:11px 14px;border-radius:9px;font-size:13px;margin-bottom:8px}
+a.btn:hover{background:#3e4c63}
+.tip{font-size:11px;color:#64748b;margin-top:8px;line-height:1.6}
+.warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);color:#fcd34d;font-size:11px;padding:9px 11px;border-radius:8px;margin-top:9px}
+.hint{font-size:11px;color:#475569;text-align:center;margin-top:16px}
 </style></head><body><div class="wrap">
 <h1>富江云端入口</h1>
-<div class="sub">安卓模块下载 · 云服务器门户</div>
+<div class="sub">模块下载 · 云服务器门户 · 日志</div>
 
 <div class="card">
-<h2>&#128230; 模块下载</h2>
-<a class="btn" href="./FJQDC-v6.apk" download>FJQDC-v6.apk <small>25 KB · 防串图版</small></a>
-<div class="tip">安装后在 LSPosed 里启用，作用域勾选「起点读书」。</div>
+<h2>📦 模块下载</h2>
+<div id="list"><div class="tip">读取中…</div></div>
+<div class="tip">安装后在 LSPosed 启用，作用域勾选「起点读书」；同名包需先卸载旧版。</div>
 </div>
 
 <div class="card">
-<h2>&#127760; 公网门户</h2>
-<a class="btn gray" id="go" href="#">打开云服务器门户 <small>文件 / 传图 / 二维码</small></a>
-<div class="tip">门户地址随隧道变化，按钮会自动跳到当前可用地址。</div>
-<div class="warn">&#128246; 移动网络进不去时：先连 Tailscale，再访问 <b>http://100.65.16.109:8899</b></div>
+<h2>🌐 云服务器门户</h2>
+<a class="btn" id="go" href="#">打开门户（文件 / 传图 / 二维码）</a>
+<a class="btn" id="loglink" href="http://100.65.16.109:8899/module-log">查看模块日志</a>
+<div class="tip" id="addr">正在读取当前地址…</div>
+<div class="warn">📶 移动网络进不去时：先连 Tailscale，再访问 <b>http://100.65.16.109:8899</b></div>
 </div>
 
-<div class="card">
-<h2>&#128736; 当前地址</h2>
-<div class="tip" id="list">正在读取…</div>
-</div>
+<div class="hint">地址随隧道变化，页面会自动读取最新值</div>
 </div>
 <script>
-var go=document.getElementById('go'),list=document.getElementById('list');
-function fill(j){
+function fmtSize(b){ if(!b) return '?'; if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+fetch('apks.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+  var box=document.getElementById('list');
+  if(!j||!j.length){ box.innerHTML='<div class="tip">暂无文件</div>'; return; }
+  box.innerHTML=j.map(function(e){
+    return '<div class="item"><div class="row1"><span class="nm">'+esc(e.name)+'</span>'
+      +'<span class="sz">'+fmtSize(e.size)+'</span></div>'
+      +'<div class="meta">MD5 '+esc(e.md5)+' · '+esc(e.time)+'</div>'
+      +(e.note?'<div class="note">'+esc(e.note)+'</div>':'')
+      +'<a class="dl" href="./'+esc(e.name)+'" download>下载</a></div>';
+  }).join('');
+}).catch(function(){ document.getElementById('list').innerHTML='<div class="tip">索引读取失败</div>'; });
+
+fetch('targets.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+  var go=document.getElementById('go'), a=document.getElementById('addr');
   if(j.files) go.href=j.files;
   var rows=[];
-  [['files','文件门户'],['vnc','VNC 远程桌面'],['dsh','DSH Web'],['gw','网关']].forEach(function(kv){
-    if(j[kv[0]]) rows.push(kv[1]+'：<a style="color:#7dd3fc;word-break:break-all" href="'+j[kv[0]]+'">'+j[kv[0]]+'</a>');
+  [['files','文件门户'],['vnc','VNC 桌面'],['dsh','DSH Web'],['gw','网关']].forEach(function(kv){
+    if(j[kv[0]]) rows.push(kv[1]+' · <a style="color:#7dd3fc;word-break:break-all" href="'+esc(j[kv[0]])+'">'+esc(j[kv[0]])+'</a>');
   });
-  list.innerHTML=rows.length?rows.join('<br>'):'暂无记录';
-}
-fetch('targets.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(fill).catch(function(){
-  list.textContent='targets.json 读取失败';
+  a.innerHTML=rows.length?rows.join('<br>'):'暂无记录';
+}).catch(function(){
+  document.getElementById('addr').textContent='targets.json 读取失败';
   fetch('target.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
-    if(t&&t.indexOf('http')===0) go.href=t.trim();
+    if(t&&t.indexOf('http')===0) document.getElementById('go').href=t.trim();
   }).catch(function(){});
 });
 </script>
