@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cloud Server - Redirecting</title>
+<style>
+body{font-family:system-ui,"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#f8fafc,#eef2ff);color:#1e293b;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;text-align:center}
+.box{background:rgba(255,255,255,.8);border:1px solid #e2e8f0;border-radius:16px;padding:36px 28px;box-shadow:0 8px 32px #0001;backdrop-filter:blur(12px);max-width:420px}
+h1{font-size:22px;color:#0369a1;margin-bottom:12px}
+p{color:#64748b;font-size:14px;margin:8px 0}
+.spin{width:36px;height:36px;border:3px solid #e2e8f0;border-top-color:#0284c7;border-radius:50%;animation:s 1s linear infinite;margin:18px auto}
+@keyframes s{to{transform:rotate(360deg)}}
+a{color:#0369a1}
+.code{font-family:monospace;background:#f1f5f9;padding:2px 8px;border-radius:5px;font-size:12px;word-break:break-all}
+</style></head><body>
+<div class="box">
+<h1>&#20113;&#26381;&#21153;&#22120;&#24179;&#21488;</h1>
+<div class="spin"></div>
+<p id="msg">&#27491;&#22312;&#36830;&#25509;&#26368;&#26032;&#22320;&#22336;...</p>
+<p id="hint" class="code"></p>
+<p><a id="link" href="#" style="display:none">&#28857;&#27492;&#25171;&#24320;</a></p>
+</div>
+<script>
+var CACHE='https://raw.githubusercontent.com/gezhanchao/gezhanchao.github.io/main/target.txt?t='+Date.now();
+fetch(CACHE,{cache:'no-store'}).then(function(r){return r.text();}).then(function(txt){
+  var url=txt.trim();
+  if(!url||url.indexOf('http')!==0){throw new Error('bad target');}
+  document.getElementById('hint').textContent=url;
+  var a=document.getElementById('link');a.href=url;a.style.display='inline';
+  document.getElementById('msg').textContent='&#36720;&#21040;&#26381;&#21153;&#22120;...';
+  location.replace(url);
+}).catch(function(e){
+  document.getElementById('msg').textContent='&#36830;&#25509;&#22833;&#36133;&#65292;&#35831;&#32531;&#20914;&#21518;&#37325;&#35797;';
+  document.getElementById('hint').textContent='';
+});
+</script></body></html>
