@@ -1,36 +1,59 @@
-<!DOCTYPE html>
-<!-- rebuild -->
+<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cloud Server - Redirecting</title>
+<title>富江云端入口</title>
 <style>
-body{font-family:system-ui,"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,#f8fafc,#eef2ff);color:#1e293b;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;text-align:center}
-.box{background:rgba(255,255,255,.8);border:1px solid #e2e8f0;border-radius:16px;padding:36px 28px;box-shadow:0 8px 32px #0001;backdrop-filter:blur(12px);max-width:420px}
-h1{font-size:22px;color:#0369a1;margin-bottom:12px}
-p{color:#64748b;font-size:14px;margin:8px 0}
-.spin{width:36px;height:36px;border:3px solid #e2e8f0;border-top-color:#0284c7;border-radius:50%;animation:s 1s linear infinite;margin:18px auto}
-@keyframes s{to{transform:rotate(360deg)}}
-a{color:#0369a1}
-.code{font-family:monospace;background:#f1f5f9;padding:2px 8px;border-radius:5px;font-size:12px;word-break:break-all}
-</style></head><body>
-<div class="box">
-<h1>&#20113;&#26381;&#21153;&#22120;&#24179;&#21488;</h1>
-<div class="spin"></div>
-<p id="msg">&#27491;&#22312;&#36830;&#25509;&#26368;&#26032;&#22320;&#22336;...</p>
-<p id="hint" class="code"></p>
-<p><a id="link" href="#" style="display:none">&#28857;&#27492;&#25171;&#24320;</a></p>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:linear-gradient(160deg,#0f172a,#1e293b 60%,#0f172a);color:#e2e8f0;min-height:100vh;padding:24px 16px;line-height:1.6}
+.wrap{max-width:520px;margin:0 auto}
+h1{font-size:22px;font-weight:700;background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.sub{color:#94a3b8;font-size:13px;margin-bottom:22px}
+.card{background:rgba(30,41,59,.75);border:1px solid #334155;border-radius:14px;padding:18px;margin-bottom:14px}
+.card h2{font-size:15px;color:#7dd3fc;margin-bottom:12px;font-weight:600}
+a.btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;text-decoration:none;padding:13px 16px;border-radius:10px;font-size:14px;font-weight:600;margin-bottom:10px}
+a.btn:hover{filter:brightness(1.1)}
+a.btn.gray{background:#334155;color:#cbd5e1}
+a.btn small{font-weight:400;opacity:.85;font-size:12px}
+.tip{font-size:12px;color:#94a3b8;margin-top:8px;line-height:1.7}
+.tip b{color:#7dd3fc}
+.warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);color:#fcd34d;font-size:12px;padding:10px 12px;border-radius:9px;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>富江云端入口</h1>
+<div class="sub">安卓模块下载 · 云服务器门户</div>
+
+<div class="card">
+<h2>&#128230; 模块下载</h2>
+<a class="btn" href="./FJQDC-v6.apk" download>FJQDC-v6.apk <small>25 KB · 防串图版</small></a>
+<div class="tip">安装后在 LSPosed 里启用，作用域勾选「起点读书」。</div>
+</div>
+
+<div class="card">
+<h2>&#127760; 公网门户</h2>
+<a class="btn gray" id="go" href="#">打开云服务器门户 <small>文件 / 传图 / 二维码</small></a>
+<div class="tip">门户地址随隧道变化，按钮会自动跳到当前可用地址。</div>
+<div class="warn">&#128246; 移动网络进不去时：先连 Tailscale，再访问 <b>http://100.65.16.109:8899</b></div>
+</div>
+
+<div class="card">
+<h2>&#128736; 当前地址</h2>
+<div class="tip" id="list">正在读取…</div>
+</div>
 </div>
 <script>
-var CACHE='target.txt?t='+Date.now();
-fetch(CACHE,{cache:'no-store'}).then(function(r){return r.text();}).then(function(txt){
-  var url=txt.trim();
-  if(!url||url.indexOf('http')!==0){throw new Error('bad target');}
-  document.getElementById('hint').textContent=url;
-  var a=document.getElementById('link');a.href=url;a.style.display='inline';
-  document.getElementById('msg').textContent='&#36720;&#21040;&#26381;&#21153;&#22120;...';
-  location.replace(url);
-}).catch(function(e){
-  document.getElementById('msg').textContent='&#36830;&#25509;&#22833;&#36133;&#65292;&#35831;&#32531;&#20914;&#21518;&#37325;&#35797;';
-  document.getElementById('hint').textContent='';
+var go=document.getElementById('go'),list=document.getElementById('list');
+function fill(j){
+  if(j.files) go.href=j.files;
+  var rows=[];
+  [['files','文件门户'],['vnc','VNC 远程桌面'],['dsh','DSH Web'],['gw','网关']].forEach(function(kv){
+    if(j[kv[0]]) rows.push(kv[1]+'：<a style="color:#7dd3fc;word-break:break-all" href="'+j[kv[0]]+'">'+j[kv[0]]+'</a>');
+  });
+  list.innerHTML=rows.length?rows.join('<br>'):'暂无记录';
+}
+fetch('targets.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(fill).catch(function(){
+  list.textContent='targets.json 读取失败';
+  fetch('target.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
+    if(t&&t.indexOf('http')===0) go.href=t.trim();
+  }).catch(function(){});
 });
-</script></body></html>
+</script>
+</body></html>
