@@ -1,5 +1,12 @@
 [
  {
+  "name": "FQ-srv4.apk",
+  "size": 62091,
+  "md5": "3a9d01ab72f8",
+  "time": "2026-11-23 01:32",
+  "note": "双路径(公网IP+Tailscale)+半图上传+本地兜底+日志自动上报"
+ },
+ {
   "name": "FQ-srv3.apk",
   "size": 62091,
   "md5": "d76578d77fe6",
