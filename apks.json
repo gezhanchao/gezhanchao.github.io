@@ -1,5 +1,12 @@
 [
  {
+  "name": "FQ-srv5.apk",
+  "size": 62091,
+  "md5": "aabe407dc7e1",
+  "time": "2026-11-23 01:38",
+  "note": "预热+重试: DERP首连3.9s问题修复"
+ },
+ {
   "name": "FQ-srv4.apk",
   "size": 62091,
   "md5": "3a9d01ab72f8",
