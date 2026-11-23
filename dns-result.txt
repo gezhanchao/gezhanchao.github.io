@@ -1,0 +1,13 @@
+host=1721361614.workers.dev
+time=2026-11-23T00:52:29Z
+---- dig A ----
+---- dig NS ----
+jacob.ns.cloudflare.com.
+anna.ns.cloudflare.com.
+---- dig SOA ----
+anna.ns.cloudflare.com. dns.cloudflare.com. 2420811832 10000 2400 604800 1800
+---- dig wildcard test ----
+---- curl ----
+http=000 size=0
+curl exit 6
+
