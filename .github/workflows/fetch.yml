@@ -1,0 +1,39 @@
+name: fetchurl
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'url to fetch'
+        required: true
+        default: 'https://1721361614.workers.dev'
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: fetch
+        env:
+          U: ${{ inputs.url }}
+        run: |
+          set -e
+          {
+            echo "url=$U"
+            echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "---- headers ----"
+            curl -sS -m 30 -D - -o body.tmp "$U" || echo "curl exit $?"
+            echo "---- body (first 3000) ----"
+            head -c 3000 body.tmp 2>/dev/null || true
+            echo
+            echo "---- body size ----"
+            wc -c body.tmp 2>/dev/null || true
+          } > fetch-result.txt
+          cat fetch-result.txt
+      - name: publish
+        run: |
+          git config user.name "fetch-bot"
+          git config user.email "fetch@local"
+          git add fetch-result.txt
+          git commit -m "fetch result" || true
+          git push || true
