@@ -1,0 +1,37 @@
+name: portscan
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'target host'
+        required: false
+        default: '180.119.140.33'
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install nmap
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq nmap
+      - name: scan all ports
+        env:
+          TARGET: ${{ inputs.target }}
+        run: |
+          set -e
+          echo "target=$TARGET" > scan-result.txt
+          echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> scan-result.txt
+          nmap -Pn -p- --open -T4 --min-rate 2000 --max-retries 1 "$TARGET" -oG nmap.gnmap | tee nmap.txt
+          grep -E '^Host:' nmap.gnmap >> scan-result.txt || true
+          echo "---- raw ----" >> scan-result.txt
+          cat nmap.txt >> scan-result.txt
+      - name: publish result
+        run: |
+          git config user.name "portscan-bot"
+          git config user.email "portscan@local"
+          git add scan-result.txt
+          git commit -m "portscan result $(date -u +%H:%M:%S)" || true
+          git push || true
+      - name: summary
+        run: cat scan-result.txt
