@@ -1,7 +1,17 @@
-url=https://1721361614.workers.dev
-time=2026-11-23T00:49:36Z
+url=https://cloud-server.1721361614.workers.dev/__health
+time=2026-11-23T00:56:46Z
 ---- headers ----
-curl exit 6
----- body (first 3000) ----
+HTTP/2 200 
+date: Mon, 23 Nov 2026 00:56:47 GMT
+content-type: application/json
+content-length: 76
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=O8jmq1DSK0cEgRlbXqN2o5MBygSK%2BAK4hRobhz%2FGNw%2FwbCyNkwIpgYwf%2F1yNy8vAnANTELp5cdMcYyO94S0Sbwx3xGb8IDOgxDo0Gu4BKSh8aRweLKpIntHQKIqT7UUHIZEkDC1nJG%2F9D2jLgpQ7zJnndGrT8w%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a5ec374d18118f23-LAX
+alt-svc: h3=":443"; ma=86400
 
+---- body (first 3000) ----
+{"ok":true,"origin":"https://laid-degree-entering-zshops.trycloudflare.com"}
 ---- body size ----
+76 body.tmp
