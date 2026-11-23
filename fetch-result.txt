@@ -1,17 +1,46 @@
-url=https://cloud-server.1721361614.workers.dev/__health
-time=2026-11-23T00:56:46Z
+url=https://cloud-server.1721361614.workers.dev/
+time=2026-11-23T00:57:55Z
 ---- headers ----
 HTTP/2 200 
-date: Mon, 23 Nov 2026 00:56:47 GMT
-content-type: application/json
-content-length: 76
-report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=O8jmq1DSK0cEgRlbXqN2o5MBygSK%2BAK4hRobhz%2FGNw%2FwbCyNkwIpgYwf%2F1yNy8vAnANTELp5cdMcYyO94S0Sbwx3xGb8IDOgxDo0Gu4BKSh8aRweLKpIntHQKIqT7UUHIZEkDC1nJG%2F9D2jLgpQ7zJnndGrT8w%3D%3D"}]}
-nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+date: Mon, 23 Nov 2026 00:57:56 GMT
+content-type: text/html; charset=utf-8
+cf-ray: a5ec38f8e82d0632-IAD
+cf-cache-status: DYNAMIC
+accept-ranges: bytes
 server: cloudflare
-cf-ray: a5ec374d18118f23-LAX
+x-robots-tag: none
+x-robots-tag: none
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=wtWp5VfUme9OqS0i%2FYPyM8fCwnJ%2FZ8%2BBvkhQaZpz%2FCbttnPzWqRBCXeW5dTonm1a4I%2BTPHODi9jFfhNXkFlEefxhB66CJBmQIAbbjfUkixu5xWzxjj8di1uLRyfpyXVv9GQpLbiDma7BfCrRvGEYDwAuCC%2FDtA%3D%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
 alt-svc: h3=":443"; ma=86400
 
 ---- body (first 3000) ----
-{"ok":true,"origin":"https://laid-degree-entering-zshops.trycloudflare.com"}
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>&#20113;&#26381;&#21153;&#22120;&#24179;&#21488;</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg1:#7dd3fc55;--bg2:#c4b5fd4d;--bg3:#5eead43d;--lin:#f8fafc;--lin2:#eef2ff;--lin3:#f0f9ff;
+--card1:rgba(255,255,255,.82);--card2:rgba(248,250,252,.7);--txt:#1e293b;--head:#0369a1;--sub:#64748b;
+--border:#e2e8f0;--grid:#0f172a08;--input:#fff;--eic:#f8fafc}
+body{font-family:system-ui,"Microsoft YaHei",sans-serif;color:var(--txt);padding:14px 16px 20px;line-height:1.6;min-height:100vh;position:relative;
+background:radial-gradient(70vw 60vh at 12% 8%,var(--bg1),transparent 60%),radial-gradient(60vw 50vh at 88% 18%,var(--bg2),transparent 60%),radial-gradient(65vw 60vh at 50% 92%,var(--bg3),transparent 60%),linear-gradient(150deg,var(--lin),var(--lin2) 55%,var(--lin3));background-attachment:fixed;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(#0000,#000)}
+.wrap{max-width:1120px;margin:0 auto;position:relative;z-index:1}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding:2px 4px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#0284c7,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 6px 20px #0284c744;color:#fff}
+h1{font-size:20px;font-weight:700;background:linear-gradient(90deg,#0369a1,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.5px}
+.sub{color:var(--sub);font-size:12px;margin-top:2px}
+.badge{display:flex;align-items:center;gap:8px;background:var(--card1);border:1px solid var(--border);border-radius:22px;padding:8px 14px;font-size:12px;color:var(--sub);backdrop-filter:blur(12px)}
+.dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 10px #16a34a}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:nowrap;width:100%}
+.tab{display:flex;align-items:center;gap:7px;background:var(--card1);border:1px solid var(--border);color:var(--sub);padding:8px 10px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:500;backdrop-filter:blur(12px);transition:.25s;flex:1;justify-content:center;white-space:nowrap}
+.tab:hover{color:var(--txt)}
+.tab.active{background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;border-color:#7dd3fc}
+.view{display:none}.view.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:linear-gradient(160deg,var(--card1),var(--card2));border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 10px 36px rgba(15,23,42,.08);backdr
 ---- body size ----
-76 body.tmp
+25930 body.tmp
