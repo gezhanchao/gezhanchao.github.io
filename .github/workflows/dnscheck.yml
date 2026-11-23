@@ -1,0 +1,43 @@
+name: dnscheck
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: 'host to inspect'
+        required: true
+        default: '1721361614.workers.dev'
+permissions:
+  contents: write
+jobs:
+  dns:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: dns and http
+        env:
+          H: ${{ inputs.host }}
+        run: |
+          {
+            echo "host=$H"
+            echo "time=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "---- dig A ----"
+            dig +short "$H" A || true
+            echo "---- dig NS ----"
+            dig +short "$H" NS || true
+            echo "---- dig SOA ----"
+            dig +short "$H" SOA || true
+            echo "---- dig wildcard test ----"
+            dig +short "zzz-$RANDOM.workers.dev" A || true
+            echo "---- curl ----"
+            curl -sS -m 20 -o body.tmp -w 'http=%{http_code} size=%{size_download}\n' "https://$H" || echo "curl exit $?"
+            head -c 800 body.tmp 2>/dev/null || true
+            echo
+          } > dns-result.txt
+          cat dns-result.txt
+      - name: publish
+        run: |
+          git config user.name "dns-bot"
+          git config user.email "dns@local"
+          git add dns-result.txt
+          git commit -m "dns check" || true
+          git push || true
