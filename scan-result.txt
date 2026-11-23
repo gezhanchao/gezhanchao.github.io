@@ -1,0 +1,5 @@
+target=180.119.140.33
+time=2026-11-23T00:40:19Z
+---- raw ----
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-11-23 00:40 +0000
+Nmap done: 1 IP address (1 host up) scanned in 67.33 seconds
