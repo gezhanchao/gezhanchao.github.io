@@ -1,82 +1,229 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
 <title>富江云端入口</title>
 <style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --line:#e6e8ef; --ink:#1a1d26; --ink2:#5b6373; --ink3:#8b93a5;
+  --brand:#3b6ef5; --brand-soft:#eef3ff; --ok:#16a34a; --ok-soft:#e9f7ee; --off:#b9bfcc;
+  --shadow:0 1px 2px rgba(20,26,45,.05),0 6px 20px rgba(20,26,45,.06);
+  --radius:16px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:linear-gradient(160deg,#0f172a,#1e293b 60%,#0f172a);color:#e2e8f0;min-height:100vh;padding:22px 14px 40px;line-height:1.6}
-.wrap{max-width:560px;margin:0 auto}
-h1{font-size:21px;font-weight:700;background:linear-gradient(90deg,#38bdf8,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{color:#94a3b8;font-size:12px;margin:4px 0 20px}
-.card{background:rgba(30,41,59,.78);border:1px solid #334155;border-radius:14px;padding:16px;margin-bottom:14px}
-.card h2{font-size:14px;color:#7dd3fc;margin-bottom:12px;font-weight:600;display:flex;align-items:center;gap:7px}
-.item{border:1px solid #334155;border-radius:10px;padding:11px 12px;margin-bottom:9px;background:rgba(15,23,42,.5)}
-.item .row1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.item .nm{font-size:13px;font-weight:600;color:#e2e8f0;word-break:break-all}
-.item .sz{font-size:11px;color:#94a3b8;white-space:nowrap}
-.item .meta{font-size:11px;color:#64748b;margin-top:4px;line-height:1.5}
-.item .note{font-size:12px;color:#a5b4fc;margin-top:4px}
-.item a.dl{display:inline-block;margin-top:8px;background:linear-gradient(135deg,#0284c7,#0ea5e9);color:#fff;text-decoration:none;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600}
-.item a.dl:hover{filter:brightness(1.1)}
-a.btn{display:flex;align-items:center;gap:9px;background:#334155;color:#cbd5e1;text-decoration:none;padding:11px 14px;border-radius:9px;font-size:13px;margin-bottom:8px}
-a.btn:hover{background:#3e4c63}
-.tip{font-size:11px;color:#64748b;margin-top:8px;line-height:1.6}
-.warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.35);color:#fcd34d;font-size:11px;padding:9px 11px;border-radius:8px;margin-top:9px}
-.hint{font-size:11px;color:#475569;text-align:center;margin-top:16px}
-</style></head><body><div class="wrap">
-<h1>富江云端入口</h1>
-<div class="sub">模块下载 · 云服务器门户 · 日志</div>
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased;
+  padding:0 0 48px;
+}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
 
-<div class="card" style="border-color:#22d3ee">
-<h2>&#127760; &#22266;&#23450;&#20837;&#21475;&#65288;&#27704;&#19981;&#21464;&#65289;</h2>
-<a class="btn" style="background:linear-gradient(135deg,#0891b2,#06b6d4)" href="https://cloud-server.1721361614.workers.dev/">&#25171;&#24320;&#20113;&#31471;&#38376;&#25143;</a>
-<div class="tip">&#36825;&#20010;&#22320;&#22336;&#30001;&#20113;&#31471; Worker &#20195;&#29702;&#65292;&#33258;&#21160;&#36319;&#38543;&#38567;&#36947;&#22495;&#21517;&#21464;&#21270;&#65292;&#19981;&#20250;&#20877;&#22833;&#25928;</div>
+/* header */
+header{
+  background:linear-gradient(135deg,#ffffff 0%,#f2f6ff 60%,#eef2ff 100%);
+  border-bottom:1px solid var(--line); padding:26px 0 22px; margin-bottom:22px;
+}
+header .wrap{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+h1{font-size:22px;font-weight:700;letter-spacing:-.2px;display:flex;align-items:center;gap:9px}
+h1 .logo{
+  width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:16px;
+  background:linear-gradient(135deg,#3b6ef5,#7c9bff);color:#fff;flex:0 0 auto;
+}
+.sub{color:var(--ink2);font-size:12.5px;margin-top:5px}
+.refresh{
+  border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:10px;
+  padding:7px 12px;font-size:12px;cursor:pointer;white-space:nowrap;flex:0 0 auto;
+  box-shadow:0 1px 2px rgba(20,26,45,.04); transition:.18s;
+}
+.refresh:hover{border-color:#c9d3ee;color:var(--brand)}
+.refresh:active{transform:translateY(1px)}
+.stamp{font-size:11px;color:var(--ink3);text-align:right;margin-top:6px}
+
+/* section */
+section{margin-bottom:22px}
+.sec-head{display:flex;align-items:center;gap:8px;margin:0 2px 11px}
+.sec-head h2{font-size:13.5px;font-weight:650;letter-spacing:.1px}
+.sec-head .count{
+  font-size:11px;color:var(--ink3);background:#eceff6;border-radius:20px;padding:1px 8px;
+}
+
+/* service grid */
+.grid{display:grid;grid-template-columns:1fr;gap:11px}
+.svc{
+  display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 15px;text-decoration:none;color:inherit;
+  box-shadow:var(--shadow); transition:.18s;
+}
+.svc:hover{transform:translateY(-1px);border-color:#cfd9f5;box-shadow:0 2px 4px rgba(20,26,45,.06),0 10px 26px rgba(59,110,245,.10)}
+.svc .ico{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:19px;
+  background:var(--brand-soft);flex:0 0 auto;
+}
+.svc .body{flex:1;min-width:0}
+.svc .name{font-size:14px;font-weight:640;display:flex;align-items:center;gap:7px}
+.svc .host{font-size:11.5px;color:var(--ink3);margin-top:2px;word-break:break-all;line-height:1.45}
+.svc .go{
+  flex:0 0 auto;font-size:12px;font-weight:600;color:var(--brand);background:var(--brand-soft);
+  padding:7px 12px;border-radius:9px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px var(--ok-soft);flex:0 0 auto}
+.svc.off{opacity:.55;pointer-events:none}
+.svc.off .dot{background:var(--off);box-shadow:0 0 0 3px #eef0f5}
+.svc.off .go{background:#f0f2f7;color:var(--ink3)}
+
+/* apk list */
+.item{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 15px;margin-bottom:10px;box-shadow:var(--shadow);
+}
+.item .row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.item .nm{font-size:13.5px;font-weight:640;word-break:break-all}
+.item .sz{font-size:11px;color:var(--ink3);white-space:nowrap}
+.item .meta{font-size:11.5px;color:var(--ink3);margin-top:3px;word-break:break-all}
+.item .note{font-size:12px;color:#4f5bd5;margin-top:5px}
+.item a.dl{
+  display:inline-flex;align-items:center;gap:5px;margin-top:10px;background:var(--brand);color:#fff;
+  text-decoration:none;padding:8px 15px;border-radius:10px;font-size:12.5px;font-weight:600;
+  transition:.18s;
+}
+.item a.dl:hover{background:#2f5ee0}
+
+/* tips */
+.note-card{
+  background:#fffdf5;border:1px solid #f3e6bf;border-radius:14px;padding:13px 15px;
+  font-size:12px;color:#7a6320;line-height:1.7;
+}
+.note-card b{color:#5f4c11}
+.note-card code{
+  background:#f6efd8;border-radius:5px;padding:1px 6px;font-size:11.5px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+.empty{font-size:12.5px;color:var(--ink3);padding:14px 4px}
+footer{text-align:center;font-size:11px;color:var(--ink3);margin-top:26px;line-height:1.8}
+@media(min-width:560px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      <h1><span class="logo">富</span>富江云端入口</h1>
+      <div class="sub">云服务器门户 · 模块下载 · 远程桌面</div>
+    </div>
+    <div>
+      <button class="refresh" id="btn">刷新地址</button>
+      <div class="stamp" id="stamp">读取中…</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head"><h2>常用入口</h2><span class="count" id="cnt">—</span></div>
+    <div class="grid" id="svc"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>模块下载</h2></div>
+    <div id="list"><div class="empty">读取中…</div></div>
+  </section>
+
+  <section>
+    <div class="note-card">
+      <b>连不上时</b> · 先连 Tailscale，再访问 <code>http://100.65.16.109:8899</code><br>
+      <b>说明</b> · 公网入口随隧道变化，本页每 45 秒自动同步一次最新地址
+    </div>
+  </section>
+
+  <footer>地址自动跟随隧道更新 · 无需手动改链接</footer>
 </div>
 
-<div class="card">
-<h2>📦 模块下载</h2>
-<div id="list"><div class="tip">读取中…</div></div>
-<div class="tip">安装后在 LSPosed 启用，作用域勾选「起点读书」；同名包需先卸载旧版。</div>
-</div>
-
-<div class="card">
-<h2>🌐 云服务器门户</h2>
-<a class="btn" id="go" href="#">打开门户（文件 / 传图 / 二维码）</a>
-<a class="btn" id="loglink" href="http://100.65.16.109:8899/module-log">查看模块日志</a>
-<div class="tip" id="addr">正在读取当前地址…</div>
-<div class="warn">📶 移动网络进不去时：先连 Tailscale，再访问 <b>http://100.65.16.109:8899</b></div>
-</div>
-
-<div class="hint">地址随隧道变化，页面会自动读取最新值</div>
-</div>
 <script>
-function fmtSize(b){ if(!b) return '?'; if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
-function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-fetch('apks.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
-  var box=document.getElementById('list');
-  if(!j||!j.length){ box.innerHTML='<div class="tip">暂无文件</div>'; return; }
-  box.innerHTML=j.map(function(e){
-    return '<div class="item"><div class="row1"><span class="nm">'+esc(e.name)+'</span>'
-      +'<span class="sz">'+fmtSize(e.size)+'</span></div>'
-      +'<div class="meta">MD5 '+esc(e.md5)+' · '+esc(e.time)+'</div>'
-      +(e.note?'<div class="note">'+esc(e.note)+'</div>':'')
-      +'<a class="dl" href="./'+esc(e.name)+'" download>下载</a></div>';
-  }).join('');
-}).catch(function(){ document.getElementById('list').innerHTML='<div class="tip">索引读取失败</div>'; });
+var SERVICES = [
+  { key:'files', icon:'🗂️', name:'文件门户', desc:'浏览 / 下载 / 上传' },
+  { key:'novnc', icon:'🌐', name:'noVNC 桌面', desc:'浏览器直接进桌面' },
+  { key:'vnc',   icon:'🖥️', name:'VNC 通道',   desc:'远程桌面备用入口' },
+  { key:'dsh',   icon:'⚙️', name:'DSH 控制台', desc:'需要登录认证' },
+  { key:'gw',    icon:'🔗', name:'网关',       desc:'转发服务' }
+];
 
-fetch('targets.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
-  var go=document.getElementById('go'), a=document.getElementById('addr');
-  if(j.files) go.href=j.files;
-  var rows=[];
-  [['files','文件门户'],['vnc','VNC 桌面'],['dsh','DSH Web'],['gw','网关']].forEach(function(kv){
-    if(j[kv[0]]) rows.push(kv[1]+' · <a style="color:#7dd3fc;word-break:break-all" href="'+esc(j[kv[0]])+'">'+esc(j[kv[0]])+'</a>');
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function host(u){ try { return new URL(u).host; } catch(e){ return u; } }
+function fmtSize(b){
+  if(!b) return '?';
+  if(b<1024) return b+' B';
+  if(b<1048576) return (b/1024).toFixed(1)+' KB';
+  return (b/1048576).toFixed(2)+' MB';
+}
+
+function renderServices(t){
+  var box=document.getElementById('svc'), html='', live=0;
+  SERVICES.forEach(function(s){
+    var url=t[s.key]||'';
+    var on=!!url;
+    if(on) live++;
+    html+='<a class="svc'+(on?'':' off')+'"'+(on?' href="'+esc(url)+'" target="_blank" rel="noopener"':'')+'>'
+        + '<span class="ico">'+s.icon+'</span>'
+        + '<span class="body">'
+        +   '<span class="name">'+esc(s.name)+'<span class="dot"></span></span>'
+        +   '<span class="host">'+(on?esc(host(url)):esc(s.desc+' · 未就绪'))+'</span>'
+        + '</span>'
+        + '<span class="go">'+(on?'打开':'—')+'</span>'
+        + '</a>';
   });
-  a.innerHTML=rows.length?rows.join('<br>'):'暂无记录';
-}).catch(function(){
-  document.getElementById('addr').textContent='targets.json 读取失败';
-  fetch('target.txt?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){
-    if(t&&t.indexOf('http')===0) document.getElementById('go').href=t.trim();
-  }).catch(function(){});
+  box.innerHTML=html;
+  document.getElementById('cnt').textContent=live+' / '+SERVICES.length+' 在线';
+}
+
+function loadTargets(){
+  var url='targets.json?t='+Date.now();
+  fetch(url,{cache:'no-store'}).then(function(r){
+    if(!r.ok) throw new Error('http '+r.status);
+    return r.json();
+  }).then(function(t){
+    renderServices(t||{});
+    document.getElementById('stamp').textContent='已更新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
+  }).catch(function(){
+    renderServices({});
+    document.getElementById('stamp').textContent='读取失败，稍后重试';
+  });
+}
+
+function loadApks(){
+  fetch('apks.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+    var box=document.getElementById('list');
+    if(!j||!j.length){ box.innerHTML='<div class="empty">暂无文件</div>'; return; }
+    box.innerHTML=j.map(function(e){
+      return '<div class="item">'
+        + '<div class="row1"><span class="nm">'+esc(e.name)+'</span><span class="sz">'+fmtSize(e.size)+'</span></div>'
+        + '<div class="meta">MD5 '+esc(e.md5)+' · '+esc(e.time)+'</div>'
+        + (e.note?'<div class="note">'+esc(e.note)+'</div>':'')
+        + '<a class="dl" href="./'+esc(e.name)+'" download>下载</a>'
+        + '</div>';
+    }).join('');
+  }).catch(function(){
+    document.getElementById('list').innerHTML='<div class="empty">索引读取失败</div>';
+  });
+}
+
+document.getElementById('btn').addEventListener('click',function(){
+  document.getElementById('stamp').textContent='刷新中…';
+  loadTargets(); loadApks();
 });
+
+document.addEventListener('visibilitychange',function(){ if(!document.hidden) loadTargets(); });
+window.addEventListener('focus',function(){ loadTargets(); });
+setInterval(loadTargets,45000);
+
+loadTargets();
+loadApks();
 </script>
-</body></html>
+</body>
+</html>
